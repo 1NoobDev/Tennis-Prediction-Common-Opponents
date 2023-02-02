@@ -1,3 +1,9 @@
+# Related theory
+A common-opponent stochastic model for predicting the outcome of professional tennis matches by William J. Knottenbelt, Demetris Spanias and Agnieszka M. Madurska. 
+Department of Computing, Imperial College London, South Kensington Campus, London, SW7 2AZ, United Kingdom. 
+
+Source: https://www.sciencedirect.com/science/article/pii/S0898122112002106
+
 # TennisCO
 
 In order to use it first extract the zip, then run the command 'python -m pip install -r requirements.txt' in a terminal in the directory of the code.
@@ -11,4 +17,4 @@ and this way you have an idea of what's going on. So in this case it would be 'p
 For Serena Williams beating Venus Williams, it would be
 python tennisP.py women "Serena Williams" "Venus Williams" -vv
 
-be careful with the case of the text as I haven't implemented any checks. So "serena williams" would not work.
+Be careful with the case of the text as I haven't implemented any checks. So "serena williams" would not work.
