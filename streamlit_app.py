@@ -113,7 +113,3 @@ with tab2:
               
         # Reset the predict_pressed flag after displaying the analysis  
         st.session_state['predict_pressed'] = False    
-            
-        # Reset the predict_pressed flag after displaying the analysis  
-        st.session_state['predict_pressed'] = False  
-        
