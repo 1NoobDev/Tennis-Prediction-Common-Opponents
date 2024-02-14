@@ -4,3 +4,4 @@ idna==3.3
 numpy==1.23.2
 requests==2.31.0
 urllib3==1.26.12
+streamlit==1.31.1

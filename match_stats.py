@@ -1,3 +1,4 @@
+# match_stats.py
 import csv
 from dataclasses import dataclass
 
@@ -149,26 +150,34 @@ def Delta_i_AB(player_A: str, player_B: str, common_adversary: str):
     )
 
 
-def prepare_match_results(year_range: Tuple[int, int], gender: str, verbosity: int = 0):
-    results = []
-
-    if gender == "men":
-        base_url = "https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_matches_"
-    elif gender == "women":
-        base_url = "https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_matches_"
-    else:
-        raise IndexError("Gender must be one of either 'men' or 'women'")
-
-    for year in range(year_range[0], year_range[1] + 1):
-        year_url = f"{base_url}{year}.csv"
-        year_filename = results_filepath(year_url)
-        if year == datetime.year:
-            results.extend(download_match_results(year_url, verbosity))
-        else:
-            try:
-                results.extend(load_match_results(year_filename))
-            except FileNotFoundError:
-                results.extend(download_match_results(year_url, verbosity))
-
-    global match_results
-    match_results = filter_match_results(results)
+def prepare_match_results(year_range: Tuple[int, int], gender: str, verbosity: int = 0):  
+    results = []  
+  
+    if gender == "men":  
+        base_url = "https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_matches_"  
+    elif gender == "women":  
+        base_url = "https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_matches_"  
+    else:  
+        raise ValueError("Gender must be one of either 'men' or 'women'")  
+  
+    for year in range(year_range[0], year_range[1] + 1):  
+        year_url = f"{base_url}{year}.csv"  
+        year_filename = results_filepath(year_url)  
+        current_year = datetime.now().year  # Get the current year  
+  
+        # If the year is the current year or the file does not exist, download the results  
+        if year == current_year or not os.path.exists(year_filename):  
+            try:  
+                results.extend(download_match_results(year_url, verbosity))  
+            except Exception as e:  
+                if verbosity >= 1:  
+                    print(f"Could not download the file for year {year}: {e}")  
+        else:  
+            try:  
+                results.extend(load_match_results(year_filename))  
+            except FileNotFoundError as e:  
+                if verbosity >= 1:  
+                    print(f"File not found: {year_filename} - {str(e)}")  
+  
+    global match_results  
+    match_results = filter_match_results(results)  
