@@ -119,7 +119,10 @@ with tab_theory:
     ### Common-Opponent Stochastic Model for Tennis Match Prediction  
   
     This model is based on a hierarchical Markov model that estimates the pre-play probability of each player winning a professional singles tennis match. The key idea is to provide a fair comparison between players by analyzing match statistics against common opponents both players have faced in the past.  
-  
+    
+    #### Abstract:  
+    Tennis features among the most popular sports internationally, with professional matches played for 11 months of the year around the globe. The rise of the internet has stimulated a dramatic increase in tennis-related financial activity, much of which depends on quantitative models. This paper presents a hierarchical Markov model which yields a pre-play estimate of the probability of each player winning a professional singles tennis match. Crucially, the model provides a fair basis of comparison between players by analysing match statistics for opponents that both players have encountered in the past. Subsequently the model exploits elements of transitivity to compute the probability of each player winning a point on their serve, and hence the match. When evaluated using a data set of historical match statistics and bookmakers odds, the model yields a 3.8% return on investment over 2173 ATP matches played on a variety of surfaces during 2011.
+    
     #### Key Points:  
     - **Popularity and Betting**: The popularity of tennis and the growth of internet betting have increased the demand for quantitative predictive models.  
     - **Hierarchical Nature of Tennis**: Tennis matches consist of sequences of sets, games, and points. This structure lends itself well to hierarchical modeling.  
@@ -128,10 +131,7 @@ with tab_theory:
     - **Common Opponents**: By comparing players' performances against shared opponents, the model leverages transitivity in tennis to predict outcomes.  
     - **Evaluation**: The model was tested on historical match data and yielded a positive return on investment, suggesting its effectiveness.  
     - **Improvement Potential**: While the model shows promise, there is room for further refinement, such as considering more sophisticated betting strategies or recursive approaches.  
-  
-    #### Conclusion:  
-    The common-opponent stochastic model provides a viable method for predicting tennis match outcomes and betting optimization. It emphasizes the importance of using match statistics thoughtfully, considering the recent form of players, and the surface on which matches are played.  
-  
+    
     #### Authors:  
     William J. Knottenbelt, Demetris Spanias, and Agnieszka M. Madurska  
   
