@@ -1,3 +1,4 @@
+# predictor.py
 import argparse
 
 from malleys import M3, M5
@@ -52,14 +53,19 @@ def P(player_A: str, player_B: str, gender: str, verbosity=0):
         except NoAdversaryMatches:
             pass
 
+    if common_players == 0:  
+        if verbosity >= 1:  
+            print("No common opponents found.")  
+        # Return None or an appropriate value to signify no common opponents  
+        return None, None, None  
     result = sum / common_players
-    print(f"The probability of {player_A} beating {player_B} is {result}")
+    print(f"The probability of {player_A} beating {player_B} is {result:.2%}")
 
     odd_a = 1 / result
     odd_b = 1 / (1 - result)
     print(f"Real odds for {player_A} winning: " + str(odd_a))
     print(f"Real odds for {player_B} winning: " + str(odd_b))
-    return result
+    return result, odd_a, odd_b
 
 
 def main():
@@ -80,7 +86,7 @@ def main():
     parser.add_argument(
         "--years",
         type=int,
-        default=[2021, 2022],
+        default=[2021, 2023],
         nargs=2,
         help="Range of years for which to consider statistics",
     )
