@@ -9,7 +9,7 @@ if 'predict_pressed' not in st.session_state:
     st.session_state['predict_pressed'] = False  
   
 if 'start_year' not in st.session_state:  
-    st.session_state['start_year'] = 2021  # Default start year  
+    st.session_state['start_year'] = 2023  # Default start year  
   
 # Set page layout to wide  
 st.set_page_config(layout="wide")  
@@ -22,14 +22,14 @@ st.markdown('Calculate the probability of winning a tennis match and determine t
 col1, col2, col3 = st.columns(3)  
   
 with col1:  
+    # Load the list of players to display as options in the selectbox  
+    gender = st.radio("Select Gender", ('men', 'women'), horizontal=True) 
+
     # Let the user select a start year  
     st.session_state['start_year'] = st.number_input('Select start year for analysis',   
                                                      min_value=1990,   
                                                      max_value=datetime.now().year,   
                                                      value=st.session_state['start_year'])  
-  
-# Load the list of players to display as options in the selectbox  
-gender = st.radio("Select Gender", ('men', 'women'), horizontal=True)  
   
 # Call prepare_match_results with the dynamic start year  
 prepare_match_results((st.session_state['start_year'], datetime.now().year), gender)  
@@ -51,7 +51,7 @@ if st.button('Predict Outcome and Calculate Bet Sizes', key='predict_button'):
     st.session_state['predict_pressed'] = True  
   
 # Use tabs to separate the main content from the additional information  
-tab1, tab2 = st.tabs(["Main Results", "Detailed Analysis"])  
+tab1, tab2, tab_theory = st.tabs(["Main Results", "Detailed Analysis", "The Theory"])  
   
 with tab1:    
     if st.session_state['predict_pressed']:    
@@ -113,3 +113,29 @@ with tab2:
               
         # Reset the predict_pressed flag after displaying the analysis  
         st.session_state['predict_pressed'] = False    
+
+with tab_theory:  
+    st.write("""  
+    ### Common-Opponent Stochastic Model for Tennis Match Prediction  
+  
+    This model is based on a hierarchical Markov model that estimates the pre-play probability of each player winning a professional singles tennis match. The key idea is to provide a fair comparison between players by analyzing match statistics against common opponents both players have faced in the past.  
+  
+    #### Key Points:  
+    - **Popularity and Betting**: The popularity of tennis and the growth of internet betting have increased the demand for quantitative predictive models.  
+    - **Hierarchical Nature of Tennis**: Tennis matches consist of sequences of sets, games, and points. This structure lends itself well to hierarchical modeling.  
+    - **Assumptions**: The model assumes that points are independent and identically distributed, allowing for a simplified calculation of match probabilities.  
+    - **Serving and Returning**: The model focuses on estimating the probabilities of winning a point on serve and return, crucial variables in determining match outcomes.  
+    - **Common Opponents**: By comparing players' performances against shared opponents, the model leverages transitivity in tennis to predict outcomes.  
+    - **Evaluation**: The model was tested on historical match data and yielded a positive return on investment, suggesting its effectiveness.  
+    - **Improvement Potential**: While the model shows promise, there is room for further refinement, such as considering more sophisticated betting strategies or recursive approaches.  
+  
+    #### Conclusion:  
+    The common-opponent stochastic model provides a viable method for predicting tennis match outcomes and betting optimization. It emphasizes the importance of using match statistics thoughtfully, considering the recent form of players, and the surface on which matches are played.  
+  
+    #### Authors:  
+    William J. Knottenbelt, Demetris Spanias, and Agnieszka M. Madurska  
+  
+    Department of Computing, Imperial College London, South Kensington Campus, London, SW7 2AZ, United Kingdom.  
+  
+    [Get the full document on sciencedirect](https://www.sciencedirect.com/science/article/pii/S0898122112002106)  
+    """)  
