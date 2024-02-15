@@ -131,4 +131,5 @@ dmypy.json
 # datasets
 atp/
 wta/
+data/
 .vs
