@@ -9,7 +9,7 @@ if 'predict_pressed' not in st.session_state:
     st.session_state['predict_pressed'] = False  
   
 if 'start_year' not in st.session_state:  
-    st.session_state['start_year'] = 2023  # Default start year  
+    st.session_state['start_year'] = 2024  # Default start year  
   
 # Set page layout to wide  
 st.set_page_config(layout="wide")  
