@@ -154,9 +154,9 @@ def prepare_match_results(year_range: Tuple[int, int], gender: str, verbosity: i
     results = []  
   
     if gender == "men":  
-        base_url = "https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_matches_"  
+        base_url = "https://raw.githubusercontent.com/1NoobDev/tennis_atp/master/atp_matches_"  
     elif gender == "women":  
-        base_url = "https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_matches_"  
+        base_url = "https://raw.githubusercontent.com/1NoobDev/tennis_wta/master/wta_matches_"  
     else:  
         raise ValueError("Gender must be one of either 'men' or 'women'")  
   
