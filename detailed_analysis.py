@@ -3,7 +3,7 @@ from match_stats import player_wins, player_losses, WINNER_NAME, LOSER_NAME
 from typing import List, Dict, Any  
   
 DATE_INDEX = 5  # Index for tourney_date  
-SCORE_INDEX = 23  # Index for score  
+# SCORE_INDEX = 23  # Index for score  
   
 def get_common_opponents(player_A: str, player_B: str) -> List[str]:  
     wins_A = set(match_result[LOSER_NAME] for match_result in player_wins(player_A))  
@@ -33,7 +33,7 @@ def get_match_details(player_A: str, player_B: str, common_opponents: List[str])
                 'opponent': opponent,  
                 'date': match_A[DATE_INDEX],  
                 'result': result_A,  
-                'score': match_A[SCORE_INDEX],  
+                # 'score': match_A[SCORE_INDEX],  
             }  
             details.append(detail_A)  
   
@@ -46,7 +46,7 @@ def get_match_details(player_A: str, player_B: str, common_opponents: List[str])
                 'opponent': opponent,  
                 'date': match_B[DATE_INDEX],  
                 'result': result_B,  
-                'score': match_B[SCORE_INDEX],  
+                # 'score': match_B[SCORE_INDEX],  
             }  
             details.append(detail_B)  
     return details  
